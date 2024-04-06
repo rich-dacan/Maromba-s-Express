@@ -4,7 +4,7 @@ public class Funcionario {
   private String Departamento;
   private double salario;
   private String ativo;
-
+  //ciborg esteve aqui
   public Funcionario(String rg, String nome, String departamento, double salario, String ativo) {
     this.rg = rg;
     this.nome = nome;
