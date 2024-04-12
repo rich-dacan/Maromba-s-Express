@@ -30,16 +30,14 @@ public class GerenciarFuncionario {
         System.out.print("Departamento: ");
         String departamento = scanner.nextLine();
 
-        Funcionario novoFuncionario = new Funcionario();
-        novoFuncionario.setNome(nome);
-        novoFuncionario.setRg(rg);
-        novoFuncionario.setSalario(salario);
-        novoFuncionario.setDepartamento(departamento);
-        novoFuncionario.setAtivo(true);
+        Funcionario novoFuncionario = new Funcionario(rg, nome, departamento, salario, true);
 
         funcionarios.add(novoFuncionario);
 
+        System.out.println("-----------------------------------");
         System.out.println("Funcionário cadastrado com sucesso!");
+        System.out.println("-----------------------------------");
+
     }
 
     public void execConsultarRG() {
@@ -76,11 +74,13 @@ public class GerenciarFuncionario {
 
     public void execConsultar() {
         System.out.println("Todos os funcionários cadastrados :");
+        System.out.println("-----------------------------------");
         for (Funcionario funcionario : funcionarios) {
             System.out.println("Nome: " + funcionario.getNome());
             System.out.println("RG: " + funcionario.getRg());
             System.out.println("Salário: " + funcionario.getSalario());
             System.out.println("Departamento: " + funcionario.getDepartamento());
+            System.out.println("-----------------------------------");
 
             if (funcionario.isAtivo()) {
                 System.out.println("Status: Ativo");
@@ -148,7 +148,7 @@ public class GerenciarFuncionario {
         }
     }
 
-    public void execInativar() {
+    public void execDesativar() {
         System.out.println("Alterar status do funcionário");
         System.out.println("Digite o RG do usuário que deseja inativar/ativar :");
         String rgToInative = scanner.nextLine();
@@ -230,7 +230,7 @@ public class GerenciarFuncionario {
             System.out.println("2. Consultar Por RG");
             System.out.println("3. Consultar todos os funcionários");
             System.out.println("4. Alterar Dados de Funcionário");
-            System.out.println("5. Inativar/Ativar");
+            System.out.println("5. Desativar/Ativar");
             System.out.println("6. Excluir Funcionário");
             System.out.println("7. Sair");
             System.out.print("Escolha uma opção: ");
@@ -252,7 +252,7 @@ public class GerenciarFuncionario {
                     gerenciarFuncionario.execAlterarDados();
                     break;
                 case 5:
-                    gerenciarFuncionario.execInativar();
+                    gerenciarFuncionario.execDesativar();
                     break;
                 case 6:
                     gerenciarFuncionario.execExcluirFuncionario();

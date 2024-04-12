@@ -6,12 +6,12 @@ public class Funcionario {
   private double salario;
   private boolean ativo;
 
-  public Funcionario() {
-    // this.rg = rg;
-    // this.nome = nome;
-    // this.departamento = departamento;
-    // this.salario = salario;
-    // this.ativo = ativo;
+  public Funcionario(String rg, String nome, String departamento, double salario, boolean ativo) {
+    this.rg = rg;
+    this.nome = nome;
+    this.departamento = departamento;
+    this.salario = salario;
+    this.ativo = ativo;
   }
 
     public void atualizarSalario(double aumento){
