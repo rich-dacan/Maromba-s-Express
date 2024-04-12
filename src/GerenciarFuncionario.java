@@ -10,7 +10,7 @@ public class GerenciarFuncionario {
 
     public GerenciarFuncionario() {
         scanner = new Scanner(System.in);
-        funcionarios = new ArrayList<>();
+        funcionarios = new ArrayList<Funcionario>();
     }
 
     public void execCadastrar() {
@@ -51,13 +51,14 @@ public class GerenciarFuncionario {
         boolean consulta = false;
 
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getRg() == rgConsulta) {
+            if (funcionario.getRg().equals(rgConsulta)) {
                 consulta = true;
-                System.out.println("Dados do funcionário :");
+                System.out.println("Dados do funcionário: ");
                 System.out.println("Nome: " + funcionario.getNome());
                 System.out.println("RG: " + funcionario.getRg());
                 System.out.println("Salário: " + funcionario.getSalario());
                 System.out.println("Departamento: " + funcionario.getDepartamento());
+
                 if (funcionario.isAtivo()) {
                     System.out.println("Status: Ativo");
                 } else {
