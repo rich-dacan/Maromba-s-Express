@@ -1,3 +1,5 @@
+package src;
+
 public class Funcionario {
   private String rg;
   private String nome;
@@ -30,11 +32,11 @@ public class Funcionario {
     }
 
 
-    public int rg() {
+    public int getRg() {
         return rg;
     }
 
-    public void rg(int rg) {
+    public void setRg(int rg) {
         this.rg = rg;
     }
 
