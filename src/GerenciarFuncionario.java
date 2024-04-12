@@ -106,10 +106,10 @@ public class GerenciarFuncionario {
         System.out.println("Digite o RG do usuário que deseja alterar os dados: ");
         String rgToAlter = scanner.nextLine();
         boolean encontrado = false;
-        scanner.nextLine();
+        
 
         for (Funcionario funcionario : funcionarios){
-           if (funcionario.getRg() == rgToAlter) {
+           if (funcionario.getRg() .equals (rgToAlter)){
                encontrado = true;
                System.out.println("Alteração de dados: ");
 
@@ -162,11 +162,10 @@ public class GerenciarFuncionario {
         System.out.println("Alterar status do funcionário");
         System.out.println("Digite o RG do usuário que deseja inativar/ativar :");
         String rgToInative = scanner.nextLine();
-        scanner.nextLine();
 
 
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getRg() == rgToInative) {
+            if (funcionario.getRg() .equals (rgToInative)) {
                 System.out.println("Dados do funcionário :");
                 System.out.println("Nome: " + funcionario.getNome());
                 System.out.println("RG: " + funcionario.getRg());
@@ -201,11 +200,10 @@ public class GerenciarFuncionario {
         System.out.println("Digite o RG do funcionário: ");
         String rgToRemove = scanner.nextLine();
         boolean excluir = false;
-        System.out.println();
 
 
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getRg() == rgToRemove) {
+            if (funcionario.getRg() .equals(rgToRemove)) {
                 excluir = true;
                 System.out.println("O funcionário será excluido");
                 System.out.println("1. Confirmar");
