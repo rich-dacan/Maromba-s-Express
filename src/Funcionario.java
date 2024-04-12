@@ -1,42 +1,34 @@
-package src;
 
 public class Funcionario {
   private String rg;
   private String nome;
-  private String Departamento;
+  private String departamento;
   private double salario;
-  private String ativo;
-  //ciborg esteve aqui
-  public Funcionario(String rg, String nome, String departamento, double salario, String ativo) {
-    this.rg = rg;
-    this.nome = nome;
-    Departamento = departamento;
-    this.salario = salario;
-    this.ativo = ativo;
+  private boolean ativo;
+
+  public Funcionario() {
+    // this.rg = rg;
+    // this.nome = nome;
+    // this.departamento = departamento;
+    // this.salario = salario;
+    // this.ativo = ativo;
   }
-
-    private double salario;
-    private String nome;
-    private String departamento;
-    private int rg;
-    private boolean ativo;
-
 
     public void atualizarSalario(double aumento){
         salario += aumento;
     }
+
     public void exibirDados(){
         System.out.println("RG = " + rg);
         System.out.println("nome = " + nome);
         System.out.println("departamento = " + departamento);
     }
 
-
-    public int getRg() {
-        return rg;
+    public String getRg() {
+        return this.rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
