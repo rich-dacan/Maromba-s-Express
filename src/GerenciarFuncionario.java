@@ -1,4 +1,3 @@
-import src.Funcionario;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,56 +10,63 @@ public class GerenciarFuncionario {
 
     public GerenciarFuncionario() {
         scanner = new Scanner(System.in);
-        funcionarios = new ArrayList<>();
+        funcionarios = new ArrayList<Funcionario>();
+    }
+
+    public int lerOpcao() {
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+        return opcao;
+    }
+
+    public void fecharScanner() {
+        scanner.close();
     }
 
     public void execCadastrar() {
-            System.out.println("Cadastro de Funcionários");
+        System.out.println("Cadastro de Funcionários");
 
-            System.out.print("Nome: ");
-            String nome = scanner.nextLine();
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
 
-            System.out.print("RG: ");
-            int rg = scanner.nextInt();
-            scanner.nextLine();
+        System.out.print("RG: ");
+        String rg = scanner.nextLine();
+        scanner.nextLine();
 
-            System.out.print("Salário: ");
-            double salario = scanner.nextDouble();
-            scanner.nextLine();
+        System.out.print("Salário: ");
+        double salario = scanner.nextDouble();
+        scanner.nextLine();
 
-            System.out.print("Departamento: ");
-            String departamento = scanner.nextLine();
+        System.out.print("Departamento: ");
+        String departamento = scanner.nextLine();
 
-            Funcionario novoFuncionario = new Funcionario();
-            novoFuncionario.setNome(nome);
-            novoFuncionario.setRg(rg);
-            novoFuncionario.setSalario(salario);
-            novoFuncionario.setDepartamento(departamento);
-            novoFuncionario.setAtivo(true);
+        Funcionario novoFuncionario = new Funcionario(rg, nome, departamento, salario, true);
 
-            funcionarios.add(novoFuncionario);
+        funcionarios.add(novoFuncionario);
 
-            System.out.println("Funcionário cadastrado com sucesso!");
+        System.out.println("-----------------------------------");
+        System.out.println("Funcionário cadastrado com sucesso!");
+        System.out.println("-----------------------------------");
+
     }
 
-
     public void execConsultarRG() {
-
         System.out.println("Consulta de funcionário através do RG");
         System.out.println("Digite o RG do funcionário: ");
-        int rgConsulta = scanner.nextInt();
+        String rgConsulta = scanner.nextLine();
         scanner.nextLine();
 
         boolean consulta = false;
 
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getRg() == rgConsulta) {
+            if (funcionario.getRg().equals(rgConsulta)) {
                 consulta = true;
-                System.out.println("Dados do funcionário :");
+                System.out.println("Dados do funcionário: ");
                 System.out.println("Nome: " + funcionario.getNome());
                 System.out.println("RG: " + funcionario.getRg());
                 System.out.println("Salário: " + funcionario.getSalario());
                 System.out.println("Departamento: " + funcionario.getDepartamento());
+
                 if (funcionario.isAtivo()) {
                     System.out.println("Status: Ativo");
                 } else {
@@ -78,11 +84,14 @@ public class GerenciarFuncionario {
 
     public void execConsultar() {
         System.out.println("Todos os funcionários cadastrados :");
+        System.out.println("-----------------------------------");
         for (Funcionario funcionario : funcionarios) {
             System.out.println("Nome: " + funcionario.getNome());
             System.out.println("RG: " + funcionario.getRg());
             System.out.println("Salário: " + funcionario.getSalario());
             System.out.println("Departamento: " + funcionario.getDepartamento());
+            System.out.println("-----------------------------------");
+
             if (funcionario.isAtivo()) {
                 System.out.println("Status: Ativo");
             } else {
@@ -95,12 +104,12 @@ public class GerenciarFuncionario {
     public void execAlterarDados() {
         System.out.println("Alterar dados do funcionário");
         System.out.println("Digite o RG do usuário que deseja alterar os dados: ");
-        int rgtoAlter = scanner.nextInt();
+        String rgToAlter = scanner.nextLine();
         boolean encontrado = false;
         scanner.nextLine();
 
         for (Funcionario funcionario : funcionarios){
-           if (funcionario.getRg() == rgtoAlter) {
+           if (funcionario.getRg() == rgToAlter) {
                encontrado = true;
                System.out.println("Alteração de dados: ");
 
@@ -132,7 +141,7 @@ public class GerenciarFuncionario {
                        break;
                    case 4:
                        System.out.println("Digite um novo RG: ");
-                       int novo_rg = scanner.nextInt();
+                       String novo_rg = scanner.nextLine();
                        funcionario.setRg(novo_rg);
                    case 5:
                        return;
@@ -145,14 +154,14 @@ public class GerenciarFuncionario {
            }
         }
         if (!encontrado) {
-            System.out.println("Funcionário com rg" + rgtoAlter + " não encontrado no sistema!");
+            System.out.println("Funcionário com rg" + rgToAlter + " não encontrado no sistema!");
         }
     }
 
-    public void execInativar() {
+    public void execDesativar() {
         System.out.println("Alterar status do funcionário");
         System.out.println("Digite o RG do usuário que deseja inativar/ativar :");
-        int rgToInative = scanner.nextInt();
+        String rgToInative = scanner.nextLine();
         scanner.nextLine();
 
 
@@ -190,13 +199,13 @@ public class GerenciarFuncionario {
         System.out.println("Excluir funcionário");
 
         System.out.println("Digite o RG do funcionário: ");
-        int rgtoremove = scanner.nextInt();
+        String rgToRemove = scanner.nextLine();
         boolean excluir = false;
         System.out.println();
 
 
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getRg() == rgtoremove) {
+            if (funcionario.getRg() == rgToRemove) {
                 excluir = true;
                 System.out.println("O funcionário será excluido");
                 System.out.println("1. Confirmar");
@@ -207,7 +216,7 @@ public class GerenciarFuncionario {
                 switch (escolha) {
                     case 1:
                         funcionarios.remove(funcionario);
-                        System.out.println("Funcionário com RG " + rgtoremove + " excluido com sucesso!");
+                        System.out.println("Funcionário com RG " + rgToRemove + " excluido com sucesso!");
                         break;
                     case 2:
                         System.out.println("Exclusão cancelada!");
@@ -218,52 +227,7 @@ public class GerenciarFuncionario {
                 break;
             }
             if (!excluir) {
-                System.out.println("Funcionário com RG " + rgtoremove + " não encontrado.");
-            }
-        }
-    }
-    public static void main(String[] args) {
-        GerenciarFuncionario gerenciarFuncionario = new GerenciarFuncionario();
-
-        while (true) {
-            System.out.println("\nMenu:");
-            System.out.println("1. Cadastrar");
-            System.out.println("2. Consultar Por RG");
-            System.out.println("3. Consultar todos os funcionários");
-            System.out.println("4. Alterar Dados de Funcionário");
-            System.out.println("5. Inativar/Ativar");
-            System.out.println("6. Excluir Funcionário");
-            System.out.println("7. Sair");
-            System.out.print("Escolha uma opção: ");
-
-            int opcao = gerenciarFuncionario.scanner.nextInt();
-            gerenciarFuncionario.scanner.nextLine();
-
-            switch (opcao) {
-                case 1:
-                    gerenciarFuncionario.execCadastrar();
-                    break;
-                case 2:
-                    gerenciarFuncionario.execConsultarRG();
-                    break;
-                case 3:
-                    gerenciarFuncionario.execConsultar();
-                    break;
-                case 4:
-                    gerenciarFuncionario.execAlterarDados();
-                    break;
-                case 5:
-                    gerenciarFuncionario.execInativar();
-                    break;
-                case 6:
-                    gerenciarFuncionario.execExcluirFuncionario();
-                    break;
-                case 7:
-                    System.out.println("Programa encerrado.");
-                    gerenciarFuncionario.scanner.close();
-                    return;
-                default:
-                    System.out.println("Opção inválida. Por favor, insira uma opção válida.");
+                System.out.println("Funcionário com RG " + rgToRemove + " não encontrado.");
             }
         }
     }
