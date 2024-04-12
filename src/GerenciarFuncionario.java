@@ -31,7 +31,6 @@ public class GerenciarFuncionario {
 
         System.out.print("RG: ");
         String rg = scanner.nextLine();
-        scanner.nextLine();
 
         System.out.print("Salário: ");
         double salario = scanner.nextDouble();
@@ -54,18 +53,19 @@ public class GerenciarFuncionario {
         System.out.println("Consulta de funcionário através do RG");
         System.out.println("Digite o RG do funcionário: ");
         String rgConsulta = scanner.nextLine();
-        scanner.nextLine();
 
         boolean consulta = false;
 
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getRg().equals(rgConsulta)) {
                 consulta = true;
+                System.out.println("-----------------------------------");
                 System.out.println("Dados do funcionário: ");
                 System.out.println("Nome: " + funcionario.getNome());
                 System.out.println("RG: " + funcionario.getRg());
                 System.out.println("Salário: " + funcionario.getSalario());
                 System.out.println("Departamento: " + funcionario.getDepartamento());
+                System.out.println("-----------------------------------");
 
                 if (funcionario.isAtivo()) {
                     System.out.println("Status: Ativo");
